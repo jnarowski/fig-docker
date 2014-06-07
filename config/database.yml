@@ -1,0 +1,11 @@
+development: &default
+  adapter: mysql2
+  database: myapp_development
+  pool: 5
+  username: root
+  host: <%= ENV.fetch('FIG3_DB_1_PORT_3306_TCP_ADDR', 'localhost') %>
+  port: <%= ENV.fetch('FIG3_DB_1_PORT_3306_TCP_PORT', '3366') %>
+
+test:
+  <<: *default
+  database: myapp_test

@@ -1,0 +1,21 @@
+db:
+  image: codekoala/percona
+  ports:
+    - '3306'
+elasticsearch: 
+  image: pandrew/elasticsearch-0.90.10
+  ports:
+    - '9200' 
+redis: 
+  image: dockerfile/redis
+  ports:
+    - '6379'
+web:
+  build: .
+  command: bundle exec thin start -p 3000
+  ports:
+    - '3000:3000'
+  links:
+    - db
+    - elasticsearch
+    - redis
